@@ -4,8 +4,9 @@
   "description": "Desafio técnico para a vaga de Desenvolvedor Backend para a empresa Neoway",
   "main": "./src/api/app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node ./src/api/app.js",
     "dev": "nodemon app.js",
+    "restart": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
