@@ -20,6 +20,14 @@ const scrapingDataCandidates = async () => {
   // await browser.close();
 };
 
+const scrapingNameAndScorePerCPF = async (cpf) => {
+  const browser = await puppeteer.launch({ headless: false });
+  const page = await browser.newPage();
+  await page.goto(`https://sample-university-site.herokuapp.com/candidates/${cpf}`);
+
+
+}
+
 
 module.exports = {
   scrapingDataCandidates
