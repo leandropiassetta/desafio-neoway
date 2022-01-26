@@ -20,7 +20,7 @@ const scrapingDataCandidates = async () => {
   // await browser.close();
 };
 
-const scrapingDaTaName= async (cpf) => {
+const scrapingDataNameAndScore= async (cpf) => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.goto(`https://sample-university-site.herokuapp.com/candidate/${cpf}`);
@@ -29,35 +29,16 @@ const scrapingDaTaName= async (cpf) => {
 
     const nodeDiv = document.querySelectorAll('div');
 
-    const name = nodeDiv[0].innerText.split(':')[1];
+    const name = nodeDiv[0].innerText.split(':')[1].trim();
+    const score = nodeDiv[1].innerText.split(':')[1].trim();
 
-    return name;
+    return  { name, score };
   });
 
   return nameCandidate;
 }
 
-const scrapingDaTaScore =  async (cpf) => {
-  const browser = await puppeteer.launch({ headless: false });
-  const page = await browser.newPage();
-  await page.goto(`https://sample-university-site.herokuapp.com/candidate/${cpf}`);
-
-
-  const scoreCandidate = await page.evaluate(() => {
-
-    const nodeDiv = document.querySelectorAll('div');
-
-    const score = nodeDiv[1].innerText.split(':')[1];
-
-    return score;
-  });
-
-  return scoreCandidate;
-}
-
-
 module.exports = {
   scrapingDataCandidates,
-  scrapingDaTaName,
-  scrapingDaTaScore
+  scrapingDataNameAndScore,
 }

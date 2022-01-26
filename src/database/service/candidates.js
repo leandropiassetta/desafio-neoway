@@ -1,5 +1,5 @@
 const { Candidates } = require('../models');
-const { scrapingDataCandidates, scrapingDaTaName, scrapingDaTaScore } = require('../../utils/dataScraping');
+const { scrapingDataCandidates, scrapingDataNameAndScore } = require('../../utils/dataScraping');
 const { cpf } = require('cpf-cnpj-validator');
 
 const getValidCPFs = async () => {
@@ -23,15 +23,11 @@ const saveApprovedCandidates = async () => {
 
     const saveCandidates = candidatesCPFs.map(async(cpf)  => {
 
-      const name = await scrapingDaTaName(cpf);
-      const score = await scrapingDaTaScore(cpf);
+      const { name, score } = await scrapingDataNameAndScore(cpf);
 
-      console.log(name)
-      console.log(score)
-
-      const candidate = Candidates.create({ cpf, name, score });
+      const candidate = await Candidates.upsert({ cpf, name, score });
   
-      return candidate;
+      return candidate[0];
     });
     
     return Promise.all(saveCandidates);

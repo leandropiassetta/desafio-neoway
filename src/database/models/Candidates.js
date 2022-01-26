@@ -1,6 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const candidates = sequelize.define('Candidates', {
-    cpf: DataTypes.STRING,
+    cpf:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
     name: DataTypes.STRING,
     score: DataTypes.FLOAT,
     }, {
