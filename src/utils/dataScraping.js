@@ -29,9 +29,9 @@ const scrapingDaTaName= async (cpf) => {
 
     const nodeDiv = document.querySelectorAll('div');
 
-    const name = nodeDiv[0].innerText.split(':')[1]
+    const name = nodeDiv[0].innerText.split(':')[1];
 
-    return name
+    return name;
   });
 
   return nameCandidate;
@@ -47,12 +47,12 @@ const scrapingDaTaScore =  async (cpf) => {
 
     const nodeDiv = document.querySelectorAll('div');
 
-    const score = nodeDiv[1].innerText.split(':')[0]
+    const score = nodeDiv[1].innerText.split(':')[0];
 
-    return score
+    return score;
   });
 
-  return scoreCandidate
+  return scoreCandidate;
 }
 
 
