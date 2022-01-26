@@ -47,7 +47,7 @@ const scrapingDaTaScore =  async (cpf) => {
 
     const nodeDiv = document.querySelectorAll('div');
 
-    const score = nodeDiv[1].innerText.split(':')[0];
+    const score = nodeDiv[1].innerText.split(':')[1];
 
     return score;
   });
