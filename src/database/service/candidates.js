@@ -25,9 +25,11 @@ const saveApprovedCandidates = async () => {
     const saveCandidates = candidatesCPFs.map(async(cpf)  => {
 
       const { name, score } = await scrapingDataNameAndScore(cpf);
-      const nameFormatted = removeAccentsAndSpecialCharacters(name);
 
-      const candidate = await Candidates.upsert({ cpf, name: nameFormatted, score });
+      const nameFormatted = removeAccentsAndSpecialCharacters(name).toUpperCase()
+      const cpfFormartted = removeAccentsAndSpecialCharacters(cpf);
+
+      const candidate = await Candidates.upsert({ cpf: cpfFormartted, name: nameFormatted, score });
   
       return candidate[0];
     });
