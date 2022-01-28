@@ -2,6 +2,7 @@ const { Candidates } = require('../models');
 const { scrapingDataCandidates, scrapingDataNameAndScore } = require('../../utils/dataScraping');
 const { removeAccentsAndSpecialCharacters } = require('../../utils/formatDatas')
 const { cpf } = require('cpf-cnpj-validator');
+const { getAllAprovedCandidates } = require('../controllers/candidates');
 
 const getValidCPFs = async () => {
   const candidatesCPFs =  await scrapingDataCandidates();
@@ -43,6 +44,13 @@ const saveApprovedCandidates = async () => {
   return saveCandidates;
 }
 
+const getAllApprovedCandidates = async () => {
+  const candidates = await Candidates.findAll();
+
+  return candidates
+}
+
 module.exports = {
-  saveApprovedCandidates
+  saveApprovedCandidates,
+  getAllApprovedCandidates
 }

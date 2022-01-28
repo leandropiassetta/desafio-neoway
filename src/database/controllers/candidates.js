@@ -3,19 +3,24 @@ const serviceCandidates = require('../service/candidates')
 const saveApprovedCandidates = async (_req, res) => {
   const candidates = await serviceCandidates.saveApprovedCandidates()
 
-  res.status(200).json({ message:'Candidatos salvos com sucesso!!', candidates });
+  res.status(201).json({ message:'Candidatos salvos com sucesso!!', candidates });
 }
 
-const getAllAprovedCandidates = async (req, res) => {
+const getAllApprovedCandidates = async (_req, res) => {
 
+  const candidates = await serviceCandidates.getAllApprovedCandidates();
+
+  console.log('oi')
+
+  res.status(200).json(candidates)
 }
 
-const getByIdAprovedCandidates = async (req, res) => {
+const getByIdApprovedCandidates = async (req, res) => {
 
 }
 
 module.exports = {
   saveApprovedCandidates,
-  getAllAprovedCandidates,
-  getByIdAprovedCandidates
+  getAllApprovedCandidates,
+  getByIdApprovedCandidates
 }
