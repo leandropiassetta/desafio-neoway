@@ -1,11 +1,13 @@
 const express = require('express');
 const PORT = process.env.PORT || 3001;
-const controller = require('../database/controllers/candidates');
+process.setMaxListeners(0); 
 
 const app = express();
 
 app.use(express.json());
 
-app.post('/', controller.saveApprovedCandidates);
+const routesCandidates = require('./routes')
+
+app.use('/approvals', routesCandidates);
 
 app.listen(PORT, () => console.log(`Api rodando na porta ${PORT}`));

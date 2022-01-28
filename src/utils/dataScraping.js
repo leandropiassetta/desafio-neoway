@@ -3,12 +3,13 @@ const puppeteer = require('puppeteer');
 const scrapingDataCandidatesPerPage = async(pageNumber) => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
+
   await page.goto(`https://sample-university-site.herokuapp.com/approvals/${pageNumber}`);
-  
+
   const cpfList = await page.evaluate(() => {
     
-    const nodeList = document.querySelectorAll('li');
-    const liArray= [ ...nodeList ];
+  const nodeList = document.querySelectorAll('li');
+  const liArray= [ ...nodeList ];
   
   const ilList = liArray.map(li => ({
     cpf: li.innerText
@@ -19,24 +20,24 @@ const scrapingDataCandidatesPerPage = async(pageNumber) => {
   
   await browser.close();
   
-  console.log(cpfList)
   return cpfList;
+
 }
 
 const scrapingDataCandidates = async () => {
 
   let cpfList = [];
   let allCPFList = [];
-  let number = 1;
+  let number = 4668;
 
   do {
 
     cpfList = await scrapingDataCandidatesPerPage(number);
-
+    console.log(cpfList)
     allCPFList.push(...cpfList);
     number++;
 
-  } while(cpfList);
+  } while(cpfList.length > 0);
 
   return allCPFList;
 };
@@ -55,11 +56,12 @@ const scrapingDataNameAndScore= async (cpf) => {
 
     return  { name, score };
   });
+  await browser.close();
 
   return nameCandidate;
 }
 
 module.exports = {
-  scrapingDataCandidates,
   scrapingDataNameAndScore,
+  scrapingDataCandidates
 }

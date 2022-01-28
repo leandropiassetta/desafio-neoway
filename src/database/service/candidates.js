@@ -22,20 +22,26 @@ const getValidCPFs = async () => {
 const saveApprovedCandidates = async () => {
   const candidatesCPFs = await getValidCPFs();
 
-    const saveCandidates = candidatesCPFs.map(async(cpf)  => {
+  const saveCandidates = candidatesCPFs.reduce(
+    (candidatesFutures, cpf) => {
+      return candidatesFutures.then(async candidates => {
+        const { name, score } = await scrapingDataNameAndScore(cpf);
 
-      const { name, score } = await scrapingDataNameAndScore(cpf);
+        const nameFormatted = removeAccentsAndSpecialCharacters(name).toUpperCase();
+        const cpfFormartted = removeAccentsAndSpecialCharacters(cpf);
 
-      const nameFormatted = removeAccentsAndSpecialCharacters(name).toUpperCase()
-      const cpfFormartted = removeAccentsAndSpecialCharacters(cpf);
+        const candidateDB = await Candidates.upsert({ cpf: cpfFormartted, name: nameFormatted, score });
 
-      const candidate = await Candidates.upsert({ cpf: cpfFormartted, name: nameFormatted, score });
-  
-      return candidate[0];
-    });
-    
-    return Promise.all(saveCandidates);
-} 
+        const candidatesDB = [...candidates, candidateDB[0]];
+
+        return candidatesDB;
+      })
+    }, 
+    (async () => [])() // valor inicial do acumulador, que começa com uma promisse e retorna um array vazio
+  )
+
+  return saveCandidates;
+}
 
 module.exports = {
   saveApprovedCandidates

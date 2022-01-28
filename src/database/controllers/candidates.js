@@ -6,6 +6,16 @@ const saveApprovedCandidates = async (_req, res) => {
   res.status(200).json({ message:'Candidatos salvos com sucesso!!', candidates });
 }
 
+const getAllAprovedCandidates = async (req, res) => {
+
+}
+
+const getByIdAprovedCandidates = async (req, res) => {
+
+}
+
 module.exports = {
-  saveApprovedCandidates
+  saveApprovedCandidates,
+  getAllAprovedCandidates,
+  getByIdAprovedCandidates
 }
