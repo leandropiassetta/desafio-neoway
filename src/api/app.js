@@ -8,6 +8,6 @@ app.use(express.json());
 
 const routesCandidates = require('./routes')
 
-app.use('/approvals', routesCandidates);
+app.use('/', routesCandidates);
 
 app.listen(PORT, () => console.log(`Api rodando na porta ${PORT}`));
