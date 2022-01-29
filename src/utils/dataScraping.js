@@ -28,7 +28,7 @@ const scrapingDataCandidates = async () => {
 
   let cpfList = [];
   let allCPFList = [];
-  let number = 4668;
+  let number = 1;
 
   do {
 
