@@ -21,7 +21,7 @@
 
 # Construção do desafio
 
-Optei por utilizar o NODEJS para desenvolver o desafio pois utiliza o JavaScript para desenvolver seus códigos, e é uma linguagem que eu prático mais no dia dia, apesar de já estar usando PYTHON, resolvi usar o NODEJS, até como forma de descobrir mais funcionalidades dele que ainda não tinha treinado no meu dia dia.
+Optei por utilizar o NODEJS para desenvolver o desafio pois tenho um domínio maior com a linguagem JavaScript para desenvolver meus códigos, e é uma linguagem que eu prático mais no dia dia, apesar de já estar usando e estudando PYTHON, resolvi usar o NODEJS, até como forma de descobrir mais funcionalidades dele que ainda não tinha treinado no meu dia dia, como para fazer crawley e scrapping.
 
 Durante a resolução do desafio tive que fazer minhas pesquisas como iria fazer a raspagem de dados, e assistindo alguns tutoriais de vídeo no youtube, conheci a biblioteca puppeteer e foi uma ótima experiência aprendida com o NODEJS.
 
