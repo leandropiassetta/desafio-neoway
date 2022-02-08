@@ -24,25 +24,7 @@ const scrapingDataCandidatesPerPage = async(pageNumber) => {
 
 }
 
-const scrapingDataCandidates = async () => {
-
-  let cpfList = [];
-  let allCPFList = [];
-  let number = 4668;
-
-  do {
-
-    cpfList = await scrapingDataCandidatesPerPage(number);
-    console.log(cpfList)
-    allCPFList.push(...cpfList);
-    number++;
-
-  } while(cpfList.length > 0);
-
-  return allCPFList;
-};
-
-const scrapingDataNameAndScore= async (cpf) => {
+const scrapingDataNameAndScore = async (cpf) => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.goto(`https://sample-university-site.herokuapp.com/candidate/${cpf}`);
@@ -63,5 +45,5 @@ const scrapingDataNameAndScore= async (cpf) => {
 
 module.exports = {
   scrapingDataNameAndScore,
-  scrapingDataCandidates
+  scrapingDataCandidatesPerPage
 }

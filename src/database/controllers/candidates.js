@@ -10,8 +10,6 @@ const getAllApprovedCandidates = async (_req, res) => {
 
   const candidates = await serviceCandidates.getAllApprovedCandidates();
 
-  console.log('oi')
-
   res.status(200).json(candidates)
 }
 
